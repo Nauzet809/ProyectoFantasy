@@ -10,7 +10,8 @@ data class Partido(
     val puntos: Int,
     val equipoE: String,
     val fecha: LocalDate,
-    val foto: Int = R.drawable.jugador_generico
+    val foto: Int = R.drawable.jugador_generico,
+    val descripcion : String = ""
 ) {
     val fotosJugadores = mapOf(
         "LeBron James" to R.drawable.lebron,
@@ -26,6 +27,6 @@ data class Partido(
     )
     @Override
     override fun toString() : String{
-        return "$nombre;$equipo;$posiciones;$puntos;$equipoE;$fecha;$foto"
+        return "$nombre;$equipo;$posiciones;$puntos;$equipoE;$fecha;$foto;$descripcion"
     }
 }

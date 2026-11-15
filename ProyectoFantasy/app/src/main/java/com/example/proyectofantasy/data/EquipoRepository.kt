@@ -41,16 +41,26 @@ val listaJugadores = listOf<String>(
 
 @RequiresApi(Build.VERSION_CODES.O)
 val listaPartidos = listOf(
-    Partido("LeBron James", "Los Angeles Lakers", listOf("SF", "PF"), 32, "Golden State Warriors", LocalDate.of(2025, 1, 25), R.drawable.lebron),
-    Partido("Stephen Curry", "Golden State Warriors", listOf("PG"), 28, "Los Angeles Lakers", LocalDate.of(2025, 1, 25), R.drawable.curry),
-    Partido("Luka Doncic", "Dallas Mavericks", listOf("PG"), 35, "Phoenix Suns", LocalDate.of(2025, 2, 10), R.drawable.luka),
-    Partido("Kevin Durant", "Phoenix Suns", listOf("SF", "PF"), 27, "Dallas Mavericks", LocalDate.of(2025, 2, 10), R.drawable.durant),
-    Partido("Jayson Tatum", "Boston Celtics", listOf("SF", "PF"), 31, "Miami Heat", LocalDate.of(2025, 3, 5), R.drawable.tatum),
-    Partido("Jimmy Butler", "Miami Heat", listOf("SF", "SG"), 24, "Boston Celtics", LocalDate.of(2025, 3, 5), R.drawable.butler),
-    Partido("Nikola Jokic", "Denver Nuggets", listOf("C"), 30, "Milwaukee Bucks", LocalDate.of(2025, 3, 12), R.drawable.jokic),
-    Partido("Giannis Antetokounmpo", "Milwaukee Bucks", listOf("PF"), 34, "Denver Nuggets", LocalDate.of(2025, 3, 12), R.drawable.giannis),
-    Partido("Anthony Edwards", "Minnesota Timberwolves", listOf("SG"), 29, "Oklahoma City Thunder", LocalDate.of(2025, 4, 2), R.drawable.edwards),
-    Partido("Shai Gilgeous-Alexander", "Oklahoma City Thunder", listOf("PG", "SG"), 33, "Minnesota Timberwolves", LocalDate.of(2025, 4, 2), R.drawable.shai)
+    Partido("LeBron James", "Los Angeles Lakers", listOf("SF", "PF"), 32, "Golden State Warriors", LocalDate.of(2025, 1, 25), R.drawable.lebron,
+        "Leyenda de la NBA, destaca por su visión de juego, físico y regularidad."),
+    Partido("Stephen Curry", "Golden State Warriors", listOf("PG"), 28, "Los Angeles Lakers", LocalDate.of(2025, 1, 25), R.drawable.curry,
+        "Considerado el mejor triplista de la historia, revolucionó el juego exterior."),
+    Partido("Luka Doncic", "Dallas Mavericks", listOf("PG"), 35, "Phoenix Suns", LocalDate.of(2025, 2, 10), R.drawable.luka,
+        "Base esloveno muy completo, anota, reparte y domina el ritmo del partido."),
+    Partido("Kevin Durant", "Phoenix Suns", listOf("SF", "PF"), 27, "Dallas Mavericks", LocalDate.of(2025, 2, 10), R.drawable.durant,
+        "Anotador letal de gran altura, capaz de tirar desde cualquier posición."),
+    Partido("Jayson Tatum", "Boston Celtics", listOf("SF", "PF"), 31, "Miami Heat", LocalDate.of(2025, 3, 5), R.drawable.tatum,
+        "Alero versátil y estrella de los Celtics, bueno en ataque y en defensa."),
+    Partido("Jimmy Butler", "Miami Heat", listOf("SF", "SG"), 24, "Boston Celtics", LocalDate.of(2025, 3, 5), R.drawable.butler,
+        "Jugador competitivo y trabajador, brilla en los momentos decisivos."),
+    Partido("Nikola Jokic", "Denver Nuggets", listOf("C"), 30, "Milwaukee Bucks", LocalDate.of(2025, 3, 12), R.drawable.jokic,
+        "Pívot serbio con una visión de pase fuera de lo común, múltiple MVP."),
+    Partido("Giannis Antetokounmpo", "Milwaukee Bucks", listOf("PF"), 34, "Denver Nuggets", LocalDate.of(2025, 3, 12), R.drawable.giannis,
+        "Ala-pívot muy atlético, imparable en carrera y cerca del aro."),
+    Partido("Anthony Edwards", "Minnesota Timberwolves", listOf("SG"), 29, "Oklahoma City Thunder", LocalDate.of(2025, 4, 2), R.drawable.edwards,
+        "Escolta explosivo y espectacular, joven estrella de los Timberwolves."),
+    Partido("Shai Gilgeous-Alexander", "Oklahoma City Thunder", listOf("PG", "SG"), 33, "Minnesota Timberwolves", LocalDate.of(2025, 4, 2), R.drawable.shai,
+        "Base elegante y eficaz, líder anotador del Thunder con gran control.")
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -77,7 +87,8 @@ fun inicializarYCargar(contexto : Context) : List<Partido> {
                     puntos = partes[3].toInt(),
                     equipoE = partes[4],
                     fecha = LocalDate.parse(partes[5]),
-                    foto = partes[6].toInt()
+                    foto = partes[6].toInt(),
+                    descripcion = partes[7]
                 )
             }.toList()
     }

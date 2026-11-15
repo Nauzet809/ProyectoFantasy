@@ -10,3 +10,7 @@ data object Lista : NavKey {
 @Serializable
 data object Anadir : NavKey {
 }
+
+@Serializable
+data object Datos : NavKey {
+}

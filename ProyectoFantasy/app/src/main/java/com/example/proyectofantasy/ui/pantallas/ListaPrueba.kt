@@ -55,6 +55,7 @@ import com.example.aplicacindepreguntas.data.listaEquipos
 import com.example.aplicacindepreguntas.model.Partido
 import com.example.aplicacindepreguntas.ui.componentes.pantallas.Dialogo
 import com.example.aplicacindepreguntas.ui.componentes.pantallas.botonesFlotantes
+import com.example.aplicacindepreguntas.ui.componentes.pantallas.buscadorTipado
 import com.example.proyectofantasy.R
 import kotlinx.coroutines.launch
 import java.nio.file.WatchEvent
@@ -65,7 +66,8 @@ import kotlin.text.contains
 fun CrearPantallaListaPrueba(
     listaJugadores: List<Partido>,
     onAdd: () -> Unit,
-    onBorrar: (List<Partido>) -> Unit      // nuevo: avisa de qué elementos borrar
+    onBorrar: (List<Partido>) -> Unit,      // nuevo: avisa de qué elementos borrar
+    alPulsarFila : (Partido) -> Unit
 ) {
     val contexto = LocalContext.current
     var buscado by remember { mutableStateOf("") }
@@ -103,7 +105,8 @@ fun CrearPantallaListaPrueba(
                     onMarcadoChange = { marcado ->
                         if (marcado) seleccionados.add(jugador)
                         else seleccionados.remove(jugador)
-                    }
+                    },
+                    onClick = alPulsarFila
                 )
             }
         }
@@ -134,11 +137,15 @@ fun ElementoLista(
     jugador: Partido,
     mostrarCheck: Boolean,
     marcado: Boolean,
-    onMarcadoChange: (Boolean) -> Unit
+    onMarcadoChange: (Boolean) -> Unit,
+    onClick : (Partido) -> Unit
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
+            .clickable {
+                if (mostrarCheck) onMarcadoChange(!marcado) else onClick(jugador)
+            }
             .padding(10.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween

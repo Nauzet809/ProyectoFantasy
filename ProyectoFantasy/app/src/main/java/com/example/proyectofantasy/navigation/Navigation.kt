@@ -3,14 +3,9 @@ package com.example.aplicacindepreguntas.navigation
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -20,8 +15,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.example.aplicacindepreguntas.data.guardarAFichero
 import com.example.aplicacindepreguntas.model.Partido
-import com.example.proyectofantasy.ui.pantallas.CrearPantallaLista
 import com.example.proyectofantasy.ui.pantallas.CrearPantallaListaPrueba
+import com.example.proyectofantasy.ui.pantallas.PantallaDatos
 import com.example.proyectofantasy.ui.pantallas.PantallaFormulario
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -31,9 +26,8 @@ fun NavDisplay(
     listaPartidos : List<Partido>,
 ) {
     var jugadores = remember { mutableStateListOf<Partido>().apply { addAll(listaPartidos) } }
-    var listaAux = remember { listaPartidos.toMutableStateList() }
     var contexto =  LocalContext.current
-
+    var jugadorDatos = jugadores[0]
 
     NavDisplay(
         modifier = Modifier.padding(horizontal = 5.dp, 40.dp ),
@@ -49,6 +43,10 @@ fun NavDisplay(
                     onBorrar = { aBorrar ->
                         jugadores.removeAll(aBorrar)
                         guardarAFichero(contexto, jugadores.toList())
+                    },
+                    alPulsarFila = { jugador ->
+                        pila.add(Datos)
+                        jugadorDatos = jugador
                     }
                 )
             }
@@ -57,6 +55,9 @@ fun NavDisplay(
                 PantallaFormulario({it -> jugadores.add(it)})
             }
 
+            entry<Datos> {
+                PantallaDatos(jugadorDatos)
+            }
         }
 
     )
