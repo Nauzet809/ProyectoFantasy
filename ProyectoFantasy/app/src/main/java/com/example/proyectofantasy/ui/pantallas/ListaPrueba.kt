@@ -81,12 +81,13 @@ fun CrearPantallaListaPrueba(
             seleccionados.clear()
             borrar = false
         },{
+            seleccionados.clear()
             borrar = false
         })
     }
 
     Column {
-        Text("Titulo")
+        Text("Partidos NBA")
 
         buscado = buscadorTipado(listaJugadores)
 

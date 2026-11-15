@@ -87,7 +87,7 @@ fun Dialogo(alConfirmar : () -> Unit, alCancelar : () -> Unit){
     var mostrar by remember { mutableStateOf(true) }
 
     AlertDialog(
-        onDismissRequest = { mostrar = false },
+        onDismissRequest = alCancelar,
         text = {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -108,7 +108,7 @@ fun Dialogo(alConfirmar : () -> Unit, alCancelar : () -> Unit){
         },
         dismissButton = {
             TextButton(
-                onClick = { mostrar = false }
+                onClick = alCancelar
             ) {
                 Text("Cancelar")
             }
